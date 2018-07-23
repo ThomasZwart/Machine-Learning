@@ -7,6 +7,10 @@ import warnings
 import math
 
 class K_Means:
+    """
+    Randomly generate n clusters and iterate x amount of times. Every iteration all data gets assigned to a cluster and 
+    the clusters updated to the average of all the assigned data. Final prediction is the closest cluster to the datapoint.   
+    """
     def __init__(self, n_clusters = 2, max_iterations = 300, tolerance = 0.001):
         self.n_clusters = n_clusters
         self.max_iterations = max_iterations
@@ -24,6 +28,7 @@ class K_Means:
         clusters = {}
         # Takes n random numbers without duplicates
         randoms = rd.sample(range(len(data)), self.n_clusters)
+
         # n random centroids to start with        
         for i in range(len(randoms)):  
             self.centroids[i] = data[randoms[i]]
@@ -51,7 +56,7 @@ class K_Means:
             
             optimized = True
                 
-            # If there is no significant change, stop iteration, increases performance
+            # If there is no significant change, stop iteration. This increases performance
             for centroid in self.centroids:
                 original_centroid = prev_centroids[centroid]
                 current_centroid = self.centroids[centroid]
@@ -103,7 +108,7 @@ def create_random_dataset(amount, min_x, max_x, min_y, max_y):
 
 def test():
     data = create_random_dataset(233, 0, 10, 0, 10)   
-    clf = K_Means(n_clusters = 17, max_iterations = 300, tolerance = 0.001)
+    clf = K_Means(n_clusters = 3, max_iterations = 300, tolerance = 0.001)
     clf.fit(data)
     clf.visualize(data)
  

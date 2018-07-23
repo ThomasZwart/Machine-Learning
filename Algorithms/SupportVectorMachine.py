@@ -135,15 +135,8 @@ for i in range(50):
     data_dict[1].append([x, rd.randint(-5, x-5)])
 
 
-#svm = Support_Vector_Machine()
-#svm.fit(data_dict)
-#with open('svm.pickle', 'wb') as file:
-#    pickle.dump(svm, file)
-pickle_in = open('svm.pickle', 'rb')
-svm = pickle.load(pickle_in)
-#svm.predict([4,5])
-#svm.predict([1,4])
-#svm.predict([0, -5])
+svm = Support_Vector_Machine()
+svm.fit(data_dict)
 svm.visualize()
 
 
